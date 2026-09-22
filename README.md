@@ -1,5 +1,10 @@
 # International Examination Center
 
+> **Enterprise Network Infrastructure Design**  
+> Main Site (HQ) • Branch 2 • Cisco Networking • Secure Multi-Site Architecture
+
+---
+
 An enterprise network design and documentation project for an **International Examination Center** consisting of two interconnected sites:
 
 - **Main Building (HQ)**
@@ -177,6 +182,13 @@ The Main Building and Branch 2 are interconnected through redundant WAN infrastr
 
 The WAN design includes:
 
+- Two WAN routers per site
+- Two ISP paths per site
+- Site-to-site IPsec VPN
+- Redundant connectivity
+- OSPF-based routing
+- Controlled inter-site communication
+
 Two WAN routers per site
 Two ISP paths per site
 Site-to-site IPsec VPN
@@ -186,6 +198,29 @@ Controlled inter-site communication
 🧰 Technologies Used
 
 The network design incorporates the following technologies:
+
+- VLAN Segmentation
+- Inter-VLAN Routing
+- Layer 3 Switching
+- EtherChannel / Port-Channel
+- OSPFv2
+- IPv4
+- IPv6
+- ACLs
+- NAT / PAT
+- DMZ
+- IPsec Site-to-Site VPN
+- QoS
+- DHCPv4
+- DHCPv6
+- DNS
+- NTP
+- Syslog
+- SNMPv3
+- Network Monitoring
+- Backup Services
+- Firewall Security
+- VoIP / IP Telephony
 
 VLAN Segmentation
 Inter-VLAN Routing
@@ -213,18 +248,19 @@ VoIP / IP Telephony
 
 The network uses dedicated VLANs to logically separate different types of network traffic.
 
-VLAN	Name	Purpose
-10	ADMIN	Administration users
-20	EMPLOYEES	IT and employee users
-30	TEST_CENTER	Examination systems
-40	CCTV	IP cameras
-50	VOICE	IP phones and VoIP
-60	SERVERS	Server infrastructure
-70	MANAGEMENT	Network management
-80	GUEST	Guest network
-90	PRINTERS_IOT	Printers and IoT devices
-100	DMZ	Public-facing services
-999	NATIVE	Native / unused-port VLAN
+| VLAN | Name | Purpose |
+|------|------|---------|
+| 10 | ADMIN | Administration users |
+| 20 | EMPLOYEES | IT and employee users |
+| 30 | TEST_CENTER | Examination systems |
+| 40 | CCTV | IP cameras |
+| 50 | VOICE | IP phones and VoIP |
+| 60 | SERVERS | Server infrastructure |
+| 70 | MANAGEMENT | Network management |
+| 80 | GUEST | Guest network |
+| 90 | PRINTERS_IOT | Printers and IoT devices |
+| 100 | DMZ | Public-facing services |
+| 999 | NATIVE | Native / unused-port VLAN |
 🌐 IP Addressing
 
 The project uses structured IPv4 and IPv6 addressing for both sites.
@@ -442,35 +478,51 @@ Cabling
 Fiber uplinks
 Physical connectivity
 📊 Project Scale
-Component	Main Site	Branch 2	Total
-PCs	191	137	328
-IP Cameras	203	143	346
-Printers	9	9	18
-Core Switches	2	2	4
-Access Switches	13	10	23
-WAN Routers	2	2	4
-Firewalls	2	1	3
-IP Phones / VoIP	Supported	Supported	VLAN 50
+| Component | Main Site | Branch 2 | Total |
+|-----------|-----------|----------|-------|
+| PCs | 191 | 137 | 328 |
+| IP Cameras | 203 | 143 | 346 |
+| Printers | 9 | 9 | 18 |
+| Core Switches | 2 | 2 | 4 |
+| Access Switches | 13 | 10 | 23 |
+| WAN Routers | 2 | 2 | 4 |
+| Firewalls | 2 | 1 | 3 |
+| IP Phones / VoIP | Supported | Supported | VLAN 50 |
 📦 Network Equipment
 Main Building
-Equipment	Quantity
-Layer 3 Core Switches	2
-48-Port Access Switches	10
-24-Port Access Switches	3
-WAN Routers	2
-Firewalls	2
-Servers	5
+| Equipment | Quantity |
+|-----------|----------|
+| Layer 3 Core Switches | 2 |
+| 48-Port Access Switches | 10 |
+| 24-Port Access Switches | 3 |
+| WAN Routers | 2 |
+| Firewalls | 2 |
+| Servers | 5 |
 Branch 2
-Equipment	Quantity
-Layer 3 Core Switches	2
-48-Port Access Switches	7
-24-Port Access Switches	3
-WAN Routers	2
-Firewall	1
-Local Servers	2
+| Equipment | Quantity |
+|-----------|----------|
+| Layer 3 Core Switches | 2 |
+| 48-Port Access Switches | 7 |
+| 24-Port Access Switches | 3 |
+| WAN Routers | 2 |
+| Firewall | 1 |
+| Local Servers | 2 |
 🎯 Design Objectives
 
 The main objectives of the project are:
+
+- Secure network segmentation
+- Reliable inter-site connectivity
+- Redundant WAN infrastructure
+- Scalable IP addressing
+- Centralized network services
+- Local branch services
+- Controlled access to network resources
+- Secure DMZ architecture
+- Traffic prioritization
+- Network monitoring and management
+- Support for future expansion
+- Structured physical and logical network design
 
 Secure network segmentation
 Reliable inter-site connectivity
@@ -488,12 +540,13 @@ Structured physical and logical network design
 
 The project was designed and documented using:
 
-Tool	Purpose
-Cisco Packet Tracer	Logical network topology and configuration
-Microsoft Visio	Physical network design
-Microsoft Word	Technical documentation
-Microsoft PowerPoint	Project presentation
-PDF	Final documentation and exported designs
+| Tool | Purpose |
+|------|---------|
+| Cisco Packet Tracer | Logical network topology and configuration |
+| Microsoft Visio | Physical network design |
+| Microsoft Word | Technical documentation |
+| Microsoft PowerPoint | Project presentation |
+| PDF | Final documentation and exported designs |
 📂 Repository Contents
 
 The public repository contains the final exported project materials.
@@ -535,6 +588,12 @@ This repository is intended to provide the final public version of the Internati
 
 The public repository contains:
 
+- Final presentation
+- Final PDF documentation
+- Physical network design
+- Logical network design
+- Project overview and technical information
+
 Final presentation
 Final PDF documentation
 Physical network design
@@ -545,6 +604,15 @@ Project overview and technical information
 The original editable project files are maintained separately in a private repository.
 
 The private repository may contain:
+
+- Cisco Packet Tracer `.pkt` files
+- Microsoft Visio `.vsdx` files
+- Editable Word `.docx` files
+- Editable PowerPoint `.pptx` files
+- Original diagrams
+- Working configurations
+- Project source files
+- Other internal working materials
 
 Cisco Packet Tracer .pkt files
 Microsoft Visio .vsdx files
