@@ -439,6 +439,21 @@ This project was developed as an **academic enterprise networking project** demo
 
 ---
 
+<div align="center">
+
+## 👥 Project Team
+
+### Done by
+
+**Salahaldeen Thabit**  
+**Yaqoob Al-Mulaiky**  
+**Abdulkareem Mothana**  
+**Ahmed Al-Wahashi**
+
+</div>
+
+---
+
 # 📜 License
 
 This project is shared for **educational and academic purposes**.
