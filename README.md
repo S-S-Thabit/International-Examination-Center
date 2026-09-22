@@ -1,87 +1,84 @@
-# International Examination Center
+# 🌐 International Examination Center
 
-> **Enterprise Network Infrastructure Design**  
-> Main Site (HQ) • Branch 2 • Cisco Networking • Secure Multi-Site Architecture
+### Enterprise Network Infrastructure Design
 
----
-
-An enterprise network design and documentation project for an **International Examination Center** consisting of two interconnected sites:
-
-- **Main Building (HQ)**
-- **Branch 2 (Secondary Branch)**
-
-The project focuses on designing a secure, scalable, redundant, and well-structured enterprise network infrastructure using Cisco networking technologies and enterprise networking concepts.
+> **Main Site (HQ) • Branch 2 • Cisco Networking • Secure Multi-Site Architecture**
 
 ---
 
-## 📌 Project Overview
+## 📌 About the Project
 
-The International Examination Center network is designed to support the operational and technical requirements of both sites, including:
+The **International Examination Center** is an enterprise network design project developed to provide a secure, scalable, redundant, and well-structured network infrastructure for a multi-site examination center.
 
-- Examination laboratories
-- Administration departments
-- IT and employee workstations
-- IP phones and VoIP services
-- CCTV and IP cameras
-- Network printers
-- Servers and network services
-- Network management
-- Internet and WAN connectivity
+The project consists of two interconnected sites:
 
-The network follows a hierarchical architecture with dedicated **Access** and **Layer 3 Core/Distribution** layers, security boundaries, redundant WAN connectivity, VLAN segmentation, and centralized network services.
+- 🏢 **Main Building (HQ)**
+- 🏢 **Branch 2 (Secondary Branch)**
 
-Both sites are interconnected through a secure WAN/IPsec VPN architecture while maintaining local infrastructure and selected local services at the secondary branch.
+The network is designed to support examination laboratories, administration, IT staff, IP phones, CCTV systems, printers, servers, network management, and Internet/WAN connectivity.
+
+The architecture combines **Layer 3 switching, VLAN segmentation, OSPFv2, firewalls, ACLs, NAT/PAT, IPsec VPN, QoS, IPv4/IPv6, and centralized network services**.
 
 ---
 
 # 🏢 Network Sites
 
-## Main Building (HQ)
+## 🏢 Main Building — HQ
 
 The Main Building is the primary and central site of the International Examination Center.
 
-It contains:
+### Infrastructure
 
-- 2 × Layer 3 Core/Distribution Switches
-- 13 × Access Switches
-- 2 × WAN/Edge Routers
-- 2 × Firewalls
-- Central server infrastructure
+| Component | Quantity |
+|---|---:|
+| Layer 3 Core/Distribution Switches | 2 |
+| Access Switches | 13 |
+| WAN/Edge Routers | 2 |
+| Firewalls | 2 |
+| Central Servers | 5 |
+| ISP Connections | 2 |
+
+### Main Functions
+
 - Examination laboratories
-- Administration area
+- Administration
 - IT and employee area
-- IP phones / VoIP infrastructure
-- CCTV system
+- IP Phones / VoIP
+- CCTV infrastructure
 - Network printers
-- Central network management services
+- Centralized servers
+- Network monitoring
 - DMZ services
-- Internet connectivity through two ISP paths
-
-The HQ hosts the main centralized infrastructure and provides core network services for the organization.
+- Internet/WAN connectivity
 
 ---
 
-## Branch 2 (Secondary Branch)
+## 🏢 Branch 2 — Secondary Branch
 
-Branch 2 is the secondary site of the International Examination Center and is connected to the Main Building through the enterprise WAN.
+Branch 2 is connected to the Main Building through the enterprise WAN.
 
-It contains:
+### Infrastructure
 
-- 2 × Layer 3 Core/Distribution Switches
-- 10 × Access Switches
-- 2 × WAN/Edge Routers
-- 1 × Firewall
-- Local DHCP Server
-- Local Camera Server
+| Component | Quantity |
+|---|---:|
+| Layer 3 Core/Distribution Switches | 2 |
+| Access Switches | 10 |
+| WAN/Edge Routers | 2 |
+| Firewall | 1 |
+| Local Servers | 2 |
+| ISP Connections | 2 |
+
+### Main Functions
+
 - Examination laboratories
-- Administration area
+- Administration
 - IT and employee area
-- IP phones / VoIP infrastructure
-- CCTV system
+- IP Phones / VoIP
+- CCTV infrastructure
 - Network printers
-- Internet connectivity through two ISP paths
-
-The branch provides selected local services while also using centralized services available from the Main Building.
+- Local DHCP services
+- Local Camera Server
+- Internet/WAN connectivity
 
 ---
 
@@ -89,105 +86,110 @@ The branch provides selected local services while also using centralized service
 
 The project follows a hierarchical enterprise network architecture consisting of:
 
-- Access Layer
-- Layer 3 Core/Distribution Layer
-- Security Layer
-- WAN/Edge Layer
-- Server and DMZ Infrastructure
-
-## Main Building Architecture
-
 ```text
-                         ISP 1
-                           |
-                         ISP 2
-                           |
-                  +------------------+
-                  |  HQ WAN Routers  |
-                  |   HQ-R1 / HQ-R2  |
-                  +------------------+
-                           |
-                    +-------------+
-                    |    ASA1     |
-                    | HQ Firewall |
-                    +-------------+
-                           |
-                    +-------------+
-                    |    ASA3     |
-                    | HQ Firewall |
-                    +-------------+
-                           |
-             +---------------------------+
-             |       Core Layer          |
-             |                           |
-             |  HQ-CORE1   HQ-CORE2      |
-             +---------------------------+
-                    |           |
-                    |           |
-              Access Layer / Floor Switches
-                    |
-        +-----------+-----------+-----------+
-        |           |           |           |
-       PCs       IP Phones    Cameras    Printers
-        |
-   Examination /
-   Administration /
-   IT Users
-Branch 2 Architecture
-                         ISP 1
-                           |
-                         ISP 2
-                           |
-                +-------------------+
-                | Branch WAN Routers|
-                |  BR-R1 / BR-R2    |
-                +-------------------+
-                           |
-                      +----------+
-                      |  ASA22   |
-                      | Firewall |
-                      +----------+
-                           |
-             +---------------------------+
-             |       Core Layer          |
-             |                           |
-             |  BR-CORE1   BR-CORE2      |
-             +---------------------------+
-                    |           |
-                    |           |
-              Access Layer / Floor Switches
-                    |
-        +-----------+-----------+-----------+
-        |           |           |           |
-       PCs       IP Phones    Cameras    Printers
-        |
-   Examination /
-   Administration /
-   IT Users
+Access Layer
+     │
+     ▼
+Layer 3 Core / Distribution
+     │
+     ▼
+Security Layer
+     │
+     ▼
+WAN / Edge Layer
+     │
+     ▼
+Internet / ISP
+Main Building
+                     ┌─────────────┐
+                     │    ISP 1    │
+                     └──────┬──────┘
+                            │
+                     ┌──────┴──────┐
+                     │    ISP 2    │
+                     └──────┬──────┘
+                            │
+                 ┌────────────────────┐
+                 │   HQ-R1 / HQ-R2    │
+                 │    WAN Routers     │
+                 └─────────┬──────────┘
+                           │
+                      ┌────▼────┐
+                      │  ASA1   │
+                      │ Firewall│
+                      └────┬────┘
+                           │
+                      ┌────▼────┐
+                      │  ASA3   │
+                      │ Firewall│
+                      └────┬────┘
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+       ┌──────▼──────┐           ┌──────▼──────┐
+       │  HQ-CORE1   │◄─────────►│  HQ-CORE2   │
+       │ Layer 3     │ EtherChannel│ Layer 3   │
+       └──────┬──────┘           └──────┬──────┘
+              │                         │
+              └────────────┬────────────┘
+                           │
+                    Access Switches
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+         PCs           IP Phones         Cameras
+                           │
+                       Printers
+Branch 2
+                     ┌─────────────┐
+                     │    ISP 1    │
+                     └──────┬──────┘
+                            │
+                     ┌──────┴──────┐
+                     │    ISP 2    │
+                     └──────┬──────┘
+                            │
+                 ┌────────────────────┐
+                 │   BR-R1 / BR-R2    │
+                 │    WAN Routers     │
+                 └─────────┬──────────┘
+                           │
+                      ┌────▼────┐
+                      │  ASA22  │
+                      │ Firewall│
+                      └────┬────┘
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+       ┌──────▼──────┐           ┌──────▼──────┐
+       │  BR-CORE1   │◄─────────►│  BR-CORE2   │
+       │ Layer 3     │ EtherChannel│ Layer 3   │
+       └──────┬──────┘           └──────┬──────┘
+              │                         │
+              └────────────┬────────────┘
+                           │
+                    Access Switches
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+         PCs           IP Phones         Cameras
+                           │
+                       Printers
 🔗 Inter-Site Connectivity
 
-The Main Building and Branch 2 are interconnected through redundant WAN infrastructure.
+The two sites are interconnected using redundant WAN connectivity and a site-to-site IPsec VPN.
 
-                    MAIN BUILDING
-                   +-------------+
-                   | HQ-R1 / R2  |
-                   +-------------+
-                          ||
-                    IPsec VPN / WAN
-                          ||
-                   +-------------+
-                   | BR-R1 / R2  |
-                   +-------------+
-                    BRANCH 2
+             MAIN BUILDING
+             HQ-R1 / HQ-R2
+                   │
+                   │
+              IPsec VPN
+                   │
+                   │
+             BRANCH 2
+             BR-R1 / BR-R2
 
-The WAN design includes:
-
-- Two WAN routers per site
-- Two ISP paths per site
-- Site-to-site IPsec VPN
-- Redundant connectivity
-- OSPF-based routing
-- Controlled inter-site communication
+The WAN architecture includes:
 
 Two WAN routers per site
 Two ISP paths per site
@@ -195,87 +197,34 @@ Site-to-site IPsec VPN
 Redundant connectivity
 OSPF-based routing
 Controlled inter-site communication
-🧰 Technologies Used
+🔐 VLAN Architecture
 
-The network design incorporates the following technologies:
+Dedicated VLANs are used to separate different types of network traffic.
 
-- VLAN Segmentation
-- Inter-VLAN Routing
-- Layer 3 Switching
-- EtherChannel / Port-Channel
-- OSPFv2
-- IPv4
-- IPv6
-- ACLs
-- NAT / PAT
-- DMZ
-- IPsec Site-to-Site VPN
-- QoS
-- DHCPv4
-- DHCPv6
-- DNS
-- NTP
-- Syslog
-- SNMPv3
-- Network Monitoring
-- Backup Services
-- Firewall Security
-- VoIP / IP Telephony
-
-VLAN Segmentation
-Inter-VLAN Routing
-Layer 3 Switching
-EtherChannel / Port-Channel
-OSPFv2
-IPv4
-IPv6
-ACLs
-NAT / PAT
-DMZ
-IPsec Site-to-Site VPN
-QoS
-DHCPv4
-DHCPv6
-DNS
-NTP
-Syslog
-SNMPv3
-Network Monitoring
-Backup Services
-Firewall Security
-VoIP / IP Telephony
-🔐 VLAN Structure
-
-The network uses dedicated VLANs to logically separate different types of network traffic.
-
-| VLAN | Name | Purpose |
-|------|------|---------|
-| 10 | ADMIN | Administration users |
-| 20 | EMPLOYEES | IT and employee users |
-| 30 | TEST_CENTER | Examination systems |
-| 40 | CCTV | IP cameras |
-| 50 | VOICE | IP phones and VoIP |
-| 60 | SERVERS | Server infrastructure |
-| 70 | MANAGEMENT | Network management |
-| 80 | GUEST | Guest network |
-| 90 | PRINTERS_IOT | Printers and IoT devices |
-| 100 | DMZ | Public-facing services |
-| 999 | NATIVE | Native / unused-port VLAN |
+VLAN	Name	Purpose
+10	ADMIN	Administration users
+20	EMPLOYEES	IT and employee users
+30	TEST_CENTER	Examination systems
+40	CCTV	IP cameras
+50	VOICE	IP Phones and VoIP
+60	SERVERS	Server infrastructure
+70	MANAGEMENT	Network management
+80	GUEST	Guest network
+90	PRINTERS_IOT	Printers and IoT devices
+100	DMZ	Public-facing services
+999	NATIVE	Native / unused-port VLAN
 🌐 IP Addressing
 
-The project uses structured IPv4 and IPv6 addressing for both sites.
+The network uses structured IPv4 and IPv6 addressing.
 
-Main Site IPv4
-10.10.0.0/16
-Branch 2 IPv4
-10.20.0.0/16
+Main Site
+IPv4: 10.10.0.0/16
+Branch 2
+IPv4: 10.20.0.0/16
 IPv6
-
-The project uses the documentation IPv6 prefix:
-
 2001:db8:acad::/48
 
-IPv6 subnetting is organized according to VLAN and site requirements.
+IPv6 subnetting is organized according to the site and VLAN structure.
 
 🖥️ Network Services
 Main Building
@@ -298,7 +247,7 @@ CCTV / NVR Services
 SFTP
 Branch 2
 
-Branch 2 provides selected local services including:
+The branch provides selected local services:
 
 Local DHCPv4
 Local DHCPv6
@@ -306,21 +255,21 @@ Local CCTV / Camera Server
 
 The branch also communicates with centralized services hosted at the Main Building.
 
-📡 VoIP and IP Phones
+☎️ VoIP & IP Phones
 
-The network includes an independent VOICE VLAN (VLAN 50) for IP phones and VoIP traffic.
+The network includes a dedicated VOICE VLAN (VLAN 50) for IP phones and VoIP traffic.
 
-The VoIP infrastructure is supported by:
+The VoIP infrastructure includes:
 
 IP Phones
 IP-PBX / FreePBX-Asterisk
 Dedicated Voice VLAN
 QoS traffic prioritization
-Network connectivity between the two sites
+Inter-site VoIP connectivity
 
-Voice traffic is separated from regular user and examination traffic to provide better traffic management and QoS control.
+Voice traffic is logically separated from examination, administration, CCTV, and other network traffic.
 
-🔄 Routing and Redundancy
+🔄 Routing & Redundancy
 
 OSPFv2 is used as the internal dynamic routing protocol.
 
@@ -328,104 +277,105 @@ The design includes:
 
 OSPF Area 0
 Redundant core infrastructure
-Layer 3 EtherChannel between core switches
+Layer 3 EtherChannel
 Two WAN routers per site
 Two ISP paths per site
 Redundant WAN connectivity
-Inter-site IPsec VPN
+IPsec VPN
 Structured IPv4 and IPv6 addressing
 🛡️ Security Architecture
 
-Security is implemented through multiple layers:
+Security is implemented through multiple network layers.
 
+Security Technologies
 Firewalls
 VLAN segmentation
-Access Control Lists
+ACLs
 DMZ
 NAT/PAT
 IPsec VPN
 Management network separation
-Restricted network management access
+Restricted management access
 Secure network services
-
-The Main Building contains two firewall/security layers:
-
-Core Layer
-    |
+HQ Security
+HQ Core
+   │
   ASA3
-    |
+   │
   ASA1
-    |
+   │
 WAN / Internet
-
-Branch 2 uses:
-
-Core Layer
-    |
-  ASA22
-    |
+Branch Security
+Branch Core
+    │
+   ASA22
+    │
 WAN / Internet
 🌍 DMZ
 
-The Main Building includes a dedicated DMZ network for externally accessible services.
+The Main Building contains a dedicated DMZ for externally accessible services.
 
-The DMZ uses:
-
-VLAN 100
-10.10.100.0/24
-
-The DMZ Web Server is:
-
-10.10.100.10
+VLAN:       100
+Network:    10.10.100.0/24
+Web Server: 10.10.100.10
 
 The DMZ is separated from internal network resources through firewall security policies.
 
-🔥 NAT and ACL
+🔥 NAT & ACL
+NAT
 
 The design includes:
 
-NAT
-PAT / NAT Overload for internal users accessing the Internet
-Separate NAT policies for HQ and Branch 2
+PAT / NAT Overload for internal networks
+Separate HQ and Branch NAT policies
 Static NAT for the DMZ Web Server
 ACL
 
-ACL policies are used to control:
+ACL policies control:
 
 Network management access
 DMZ access
 Web traffic
-Secure HTTPS traffic
+HTTPS traffic
 ICMP reachability
 Access to protected services
 🔐 IPsec VPN
 
-A site-to-site IPsec VPN connects the Main Building and Branch 2.
+A site-to-site IPsec VPN provides secure communication between HQ and Branch 2.
 
-HQ Internal Network
+HQ Network
 10.10.0.0/16
-        ||
-     IPsec VPN
-        ||
-Branch Internal Network
+      │
+      │
+  IPsec VPN
+      │
+      │
+Branch Network
 10.20.0.0/16
-
-The VPN provides secure communication between the two sites while using the redundant WAN infrastructure.
-
 🚦 Quality of Service
 
-QoS is implemented to prioritize important network traffic.
+QoS is used to prioritize important traffic.
 
-Class	Traffic	QoS Treatment
+Class	Traffic	Treatment
 REALTIME	VoIP / IP-PBX	Strict Priority / LLQ
 WEB	HTTP / HTTPS	Best Effort
 MGMT	SSH / SNMP / Syslog	Guaranteed Bandwidth
 
 VoIP traffic receives priority treatment to reduce latency and jitter.
 
+📊 Project Scale
+Component	Main Site	Branch 2	Total
+PCs	191	137	328
+IP Cameras	203	143	346
+Printers	9	9	18
+Core Switches	2	2	4
+Access Switches	13	10	23
+WAN Routers	2	2	4
+Firewalls	2	1	3
+IP Phones / VoIP	Supported	Supported	VLAN 50
 🏢 Physical Infrastructure
 
-The physical network design includes:
+The physical design includes:
 
 Network racks
 Core switches
@@ -440,11 +390,11 @@ UPS systems
 Floor distribution racks
 Server infrastructure
 
-The physical design represents the actual equipment distribution across the floors and network rooms of both sites.
+The physical design represents the equipment distribution across the floors and network rooms of both sites.
 
 🖥️ Logical Network Design
 
-The logical network design was developed using Cisco Packet Tracer.
+The logical network topology was developed using Cisco Packet Tracer.
 
 It represents:
 
@@ -460,6 +410,8 @@ IPsec VPN
 End devices
 Network segmentation
 Routing architecture
+🖼️ Logical Topology
+
 🗺️ Physical Network Design
 
 The physical network design was developed using Microsoft Visio.
@@ -477,96 +429,19 @@ Patch panels
 Cabling
 Fiber uplinks
 Physical connectivity
-📊 Project Scale
-| Component | Main Site | Branch 2 | Total |
-|-----------|-----------|----------|-------|
-| PCs | 191 | 137 | 328 |
-| IP Cameras | 203 | 143 | 346 |
-| Printers | 9 | 9 | 18 |
-| Core Switches | 2 | 2 | 4 |
-| Access Switches | 13 | 10 | 23 |
-| WAN Routers | 2 | 2 | 4 |
-| Firewalls | 2 | 1 | 3 |
-| IP Phones / VoIP | Supported | Supported | VLAN 50 |
-📦 Network Equipment
-Main Building
-| Equipment | Quantity |
-|-----------|----------|
-| Layer 3 Core Switches | 2 |
-| 48-Port Access Switches | 10 |
-| 24-Port Access Switches | 3 |
-| WAN Routers | 2 |
-| Firewalls | 2 |
-| Servers | 5 |
-Branch 2
-| Equipment | Quantity |
-|-----------|----------|
-| Layer 3 Core Switches | 2 |
-| 48-Port Access Switches | 7 |
-| 24-Port Access Switches | 3 |
-| WAN Routers | 2 |
-| Firewall | 1 |
-| Local Servers | 2 |
-🎯 Design Objectives
+📄 Physical Design
 
-The main objectives of the project are:
+🗺️ View Physical Network Design — Physical_Design.pdf
 
-- Secure network segmentation
-- Reliable inter-site connectivity
-- Redundant WAN infrastructure
-- Scalable IP addressing
-- Centralized network services
-- Local branch services
-- Controlled access to network resources
-- Secure DMZ architecture
-- Traffic prioritization
-- Network monitoring and management
-- Support for future expansion
-- Structured physical and logical network design
+📚 Project Documentation
 
-Secure network segmentation
-Reliable inter-site connectivity
-Redundant WAN infrastructure
-Scalable IP addressing
-Centralized network services
-Local branch services
-Controlled access to network resources
-Secure DMZ architecture
-Traffic prioritization
-Network monitoring and management
-Support for future expansion
-Structured physical and logical network design
-🛠️ Design and Documentation Tools
+The complete technical documentation is available as a PDF.
 
-The project was designed and documented using:
+📖 Documentation
 
-| Tool | Purpose |
-|------|---------|
-| Cisco Packet Tracer | Logical network topology and configuration |
-| Microsoft Visio | Physical network design |
-| Microsoft Word | Technical documentation |
-| Microsoft PowerPoint | Project presentation |
-| PDF | Final documentation and exported designs |
-📂 Repository Contents
+📚 View Project Documentation — توثيق المشروعV3.pdf
 
-The public repository contains the final exported project materials.
-
-International-Examination-Center/
-│
-├── README.md
-│
-├── Presentation/
-│   └── International-Examination-Center-Presentation.pdf
-│
-├── Documentation/
-│   ├── Network-Documentation.pdf
-│   └── Physical-Network-Design.pdf
-│
-└── Logical-Design/
-    └── Logical-Network-Design.png
-📚 Documentation Structure
-
-The final documentation covers:
+The documentation covers:
 
 Project Overview
 Site and Building Overview
@@ -582,91 +457,104 @@ Security Architecture
 Quality of Service
 Network Services
 Conclusion
-📄 Public Repository
+🎤 Project Presentation
 
-This repository is intended to provide the final public version of the International Examination Center network project.
+The project presentation is available as a PDF.
 
-The public repository contains:
+📊 Presentation
 
-- Final presentation
-- Final PDF documentation
-- Physical network design
-- Logical network design
-- Project overview and technical information
+🎤 View Project Presentation — Secure Exam Network Architecture
 
-Final presentation
-Final PDF documentation
-Physical network design
-Logical network design
-Project overview and technical information
-🔒 Private Project Repository
+🛠️ Design & Documentation Tools
+Tool	Purpose
+Cisco Packet Tracer	Logical network design and configuration
+Microsoft Visio	Physical network design
+Microsoft Word	Technical documentation
+Microsoft PowerPoint	Project presentation
+PDF	Final exported documentation and designs
+🎯 Design Objectives
 
-The original editable project files are maintained separately in a private repository.
+The project aims to provide:
 
-The private repository may contain:
+🔐 Secure network segmentation
+🔗 Reliable inter-site connectivity
+♻️ Redundant WAN infrastructure
+📈 Scalable IP addressing
+🖥️ Centralized network services
+🏢 Local branch services
+🛡️ Controlled access to network resources
+🌍 Secure DMZ architecture
+🚦 Traffic prioritization
+📊 Network monitoring and management
+🔧 Support for future expansion
+🗺️ Structured physical and logical network design
+📂 Repository Structure
+International-Examination-Center/
+│
+├── README.md
+│
+├── Presentation/
+│   └── Secure_Exam_Network_Architecture.pdf
+│
+├── Documentation/
+│   └── توثيق المشروعV3.pdf
+│
+├── Physical-Design/
+│   └── Physical_Design.pdf
+│
+└── Logical-Design/
+    └── Logical_Design.png
+🔒 Source Files
 
-- Cisco Packet Tracer `.pkt` files
-- Microsoft Visio `.vsdx` files
-- Editable Word `.docx` files
-- Editable PowerPoint `.pptx` files
-- Original diagrams
-- Working configurations
-- Project source files
-- Other internal working materials
+The public repository contains the final exported project materials.
 
-Cisco Packet Tracer .pkt files
-Microsoft Visio .vsdx files
-Editable Word .docx files
-Editable PowerPoint .pptx files
-Original diagrams
+Original editable project files are maintained separately in a private repository, including files such as:
+
+Cisco Packet Tracer .pkt
+Microsoft Visio .vsdx
+Editable Word .docx
+Editable PowerPoint .pptx
 Working configurations
-Project source files
-Other internal working materials
+Original project source files
 
-The public repository intentionally contains exported/final versions rather than the original editable working files.
+The public repository intentionally provides the final versions for viewing while keeping the original working files private.
 
-📖 Academic Purpose
+🎓 Academic Project
 
 This project was developed as an academic enterprise networking project demonstrating the design and documentation of a realistic multi-site network infrastructure.
 
-It combines network architecture, switching, routing, security, WAN connectivity, network services, QoS, physical infrastructure, and technical documentation into one integrated enterprise network design.
+It combines:
 
-👨‍💻 Project
+Network Architecture • Switching • Routing • Security • WAN • VPN • QoS • Network Services • VoIP • CCTV • Physical Infrastructure
 
+👨‍💻 Project Information
 International Examination Center
 
 Enterprise Network Infrastructure Design
 
-Main Site: HQ
-Secondary Site: Branch 2
+Site	Description
+🏢 Main Site	HQ / Central Infrastructure
+🏢 Secondary Site	Branch 2
+🌐 Network Type	Multi-Site Enterprise Network
+🔐 Security	Firewalls / ACL / DMZ / IPsec
+🔄 Routing	OSPFv2
+📡 Voice	VoIP / IP Phones
+📹 CCTV	IP Camera Infrastructure
+🖥️ Logical Design	Cisco Packet Tracer
+🗺️ Physical Design	Microsoft Visio
+📜 License
 
-Core Technologies
-Cisco Networking
-VLAN
-IPv4 / IPv6
-OSPFv2
-Layer 3 Switching
-EtherChannel
-ACL
-NAT / PAT
-DMZ
-IPsec VPN
-QoS
-DHCPv4 / DHCPv6
-DNS
-NTP
-Syslog
-SNMPv3
-VoIP
-CCTV
-Network Monitoring
-
- 📜 License
-
-This project is shared for **educational and academic purposes**.
+This project is shared for educational and academic purposes.
 
 You are welcome to view the project and use it as a reference for learning and study.
 
 Please do not copy, reproduce, redistribute, or present this project or substantial parts of it as your own work without permission.
 
-**Please respect the original work and give proper credit when referencing it.**
+Please respect the original work and give proper credit when referencing it.
+
+<p align="center">
+🌐 International Examination Center
+
+Enterprise Network Infrastructure Design
+
+Main Site • Branch 2 • Secure • Scalable • Redundant
